@@ -9,3 +9,4 @@ hachoir
 anitopy
 pyromod
 asyncio
+lxml_html_clean
