@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from bot import db, collection, Config, LOGS, queue,data, list_handler, words
 
 
-ffmpeg = "-map 0:v -map 0:a? -map 0:s:0? -c:v libx265 -pix_fmt yuv420p -x265-params 'no-info=1' -crf 30.7 -vf 'drawtext=fontfile=Aclonica.ttf:fontsize=25:fontcolor=white:bordercolor=black@0.50:x=w-tw-10:y=10:box=1:boxcolor=black@0.5:boxborderw=6:text=FIERCENETWORK' -s 854x480 -preset medium -metadata title='Visit For More Movies [t.me/Fiercenetwork]'  -metadata:s:v title='Visit Website [Fiercenetwork] t.me/Fiercenetwork] - 480p - HEVC - 8bit'  -metadata:s:a title='[Visit t.me/Fiercenetwork] - AAC - 40k kbps' -metadata:s:s title='[Fiercenetwork Subs]' -c:a libfdk_aac -ab 50k -ac 2 -profile:a aac_he_v2 -c:s copy"
+ffmpeg = "-map 0:v -map 0:a? -map 0:s:0? -c:v libx265 -pix_fmt yuv420p -x265-params 'no-info=1' -crf 30.7 -vf 'drawtext=fontfile=Aclonica.ttf:fontsize=25:fontcolor=white:bordercolor=black@0.50:x=w-tw-10:y=10:box=1:boxcolor=black@0.5:boxborderw=6:text=FIERCENETWORK' -s 854x480 -preset medium -metadata title='Visit For More Movies [t.me/Fiercenetwork]'  -metadata:s:v title='Visit Website [Fiercenetwork] t.me/Fiercenetwork] - 480p - HEVC - 8bit'  -metadata:s:a title='[Visit t.me/Fiercenetwork] - AAC - 40k kbps' -metadata:s:s title='[Fiercenetwork Subs]' -c:a libopus -ab 50k -ac 2 -profile:a -c:s copy"
 
 async def adduser(message):
   if collection.find_one({'_id' : int(message.from_user.id)}):
