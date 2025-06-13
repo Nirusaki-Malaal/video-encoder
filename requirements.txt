@@ -1,0 +1,11 @@
+pyrogram
+html_telegraph_poster
+TgCrypto
+psutil
+pymongo[srv]
+aiohttp
+python-dotenv
+hachoir
+anitopy
+pyromod
+asyncio
