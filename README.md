@@ -1,33 +1,34 @@
-<h1 align="center">🚀 Video Encoder Bot</h1>
-<h3 align="center">⚡ A Super-Powered Telegram Bot That Encodes Videos Using Custom FFMPEG Settings ⚙️</h3>
+<h1 align="center">🍥 Video Encoder Bot</h1>
+<h3 align="center">⚡ The Ultimate FFMPEG-Powered Telegram Bot — Encodes Like a Hokage ⚙️</h3>
 
 <p align="center">
-  <img src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" width="200" alt="Naruto running">
-  <img src="https://media.giphy.com/media/3o6Zt6ML6BklcajjsA/giphy.gif" width="200" alt="Hello Kitty typing">
+  <img src="https://media.giphy.com/media/10LKovKon8DENq/giphy.gif" width="250" alt="Naruto running">
+  <img src="https://media.giphy.com/media/mCRJDo24UvJMA/giphy.gif" width="200" alt="Hello Kitty coding">
 </p>
 
 ---
 
 ### 🧠 What’s This?
-A beast of a bot that can **encode videos using your custom FFMPEG commands** 🧩  
-Even after a restart, this bot **keeps working like Naruto chasing his dream** — all thanks to its persistent database!
+A **supercharged Telegram bot** that lets you encode videos using **your own FFMPEG commands** 🎞️  
+Even if your server restarts, it **keeps encoding like Naruto never giving up on Sasuke** 💪  
+All thanks to a persistent database that remembers your queue!
 
 ---
 
 ## 💪 Features
-- 🎥 Encode videos with **your own FFMPEG settings**
-- 🔄 **Persistent queue** — doesn’t lose progress even after restart
-- 🧰 Admin utilities like bash, eval, and system info
-- 🐳 Easy Docker deployment or manual setup
-- 🧾 Fully customizable via `config.env`
-- 💾 Auto-save + database persistence = no rage-quits
+- 🍥 Encode videos with **your own FFMPEG settings**
+- 🌀 **Persistent queue** — keeps working through restarts
+- 💻 **Admin tools:** bash, eval, sysinfo, mediainfo
+- 🐳 Deploy easily using **Docker** or manual setup
+- 🧾 Fully configurable via `config.env`
+- 💾 Reliable database = zero progress loss
 
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif" width="250" alt="Naruto believe it">
+  <img src="https://media.giphy.com/media/26gssIytJvy1b1THO/giphy.gif" width="250" alt="Naruto believe it">
   <br>
-  <b>"Believe it!" - Naruto, probably while encoding videos at 2AM</b>
+  <b>"Believe it!" – Naruto, probably after a successful encode</b>
 </p>
 
 ---
@@ -59,7 +60,7 @@ Even after a restart, this bot **keeps working like Naruto chasing his dream** �
 ## 🧰 Deployment Guide
 
 ### 🧾 1. Fill in `config.env`
-Put all your bot credentials inside:
+Add your credentials like this:
 
 ```env
 BOT_TOKEN=your_bot_token_here
@@ -84,15 +85,15 @@ pip install -r requirements.txt
 python3 -m bot
 ```
 
-> ⚠️ **Note:** Start the bot before running encoding or you’ll face:  
+> ⚠️ **Note:** Start the bot before encoding or you'll face:  
 > `"Client Has Not Met Error"` 😭
 
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" width="200" alt="Hello Kitty coding">
+  <img src="https://media.giphy.com/media/YQitE4YNQNahy/giphy.gif" width="220" alt="Hello Kitty laptop">
   <br>
-  <b>Even Hello Kitty codes FFMPEG now 💅</b>
+  <b>Even Hello Kitty is debugging your FFMPEG args 💅</b>
 </p>
 
 ---
@@ -100,25 +101,27 @@ python3 -m bot
 ## 🛠️ Tech Stack
 - 🐍 **Python 3**
 - 🎞️ **FFMPEG**
-- 💾 **Database** (for queue persistence)
+- 💾 **Database** (persistent queue)
 - 🤖 **Telegram Bot API**
-- 🐳 **Docker** (for easy deployment)
+- 🐳 **Docker** (for deployment)
 
 ---
 
 ## 💖 Support the Project
-If you vibe with this project, please **⭐ star the repo**  
-It took me *days of sleep deprivation + ramen* to make this work 🌀
+If this bot saved your encoding sanity, please **⭐ star the repo**  
+Made with sleepless nights, ramen 🍜, and a little ninja willpower 🍃
 
 <p align="center">
-  <img src="https://media.giphy.com/media/ASd0Ukj0y3qMM/giphy.gif" width="200" alt="Naruto thumbs up">
+  <img src="https://media.giphy.com/media/J93sVmfYBtsRi/giphy.gif" width="200" alt="Naruto thumbs up">
+  <br>
+  <b>Thanks for supporting, dattebayo! 🍥</b>
 </p>
 
 ---
 
 ## 📸 Demo
-_Add your Telegram bot screenshots or GIF demos here!_
+_Add your bot screenshots, Telegram logs, or encode previews here._
 
 ---
 
-### Made with ❤️, 🦾, and too much caffeine by [YourNameHere]
+### Made with ❤️, 🦾, and way too much caffeine by [YourNameHere]
