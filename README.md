@@ -2,7 +2,7 @@
 <h3 align="center">⚡ The Ultimate FFMPEG-Powered Telegram Bot — Encodes Like a Hokage ⚙️</h3>
 
 <p align="center">
-  <img src="https://media.giphy.com/media/10LKovKon8DENq/giphy.gif" width="250" alt="Naruto running">
+  <img src="https://i.giphy.com/y5efFpqW5knlu.webp" width="250" alt="Naruto running">
   <img src="https://media.giphy.com/media/mCRJDo24UvJMA/giphy.gif" width="200" alt="Hello Kitty coding">
 </p>
 
