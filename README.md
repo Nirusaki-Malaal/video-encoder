@@ -2,8 +2,8 @@
 <h3 align="center">⚡ A Super-Powered Telegram Bot That Encodes Videos Using Custom FFMPEG Settings ⚙️</h3>
 
 <p align="center">
-  <img src="https://media.giphy.com/media/LU3bJmE8GkQ4o/giphy.gif" width="200" alt="Naruto running">
-  <img src="https://media.giphy.com/media/mCRJDo24UvJMA/giphy.gif" width="200" alt="Hello Kitty typing">
+  <img src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" width="200" alt="Naruto running">
+  <img src="https://media.giphy.com/media/3o6Zt6ML6BklcajjsA/giphy.gif" width="200" alt="Hello Kitty typing">
 </p>
 
 ---
@@ -25,7 +25,7 @@ Even after a restart, this bot **keeps working like Naruto chasing his dream** �
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif" width="250" alt="Naruto believe it">
+  <img src="https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif" width="250" alt="Naruto believe it">
   <br>
   <b>"Believe it!" - Naruto, probably while encoding videos at 2AM</b>
 </p>
@@ -90,7 +90,7 @@ python3 -m bot
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/KzJkzjggfGN5Py6nkT/giphy.gif" width="200" alt="Hello Kitty coding">
+  <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" width="200" alt="Hello Kitty coding">
   <br>
   <b>Even Hello Kitty codes FFMPEG now 💅</b>
 </p>
@@ -111,7 +111,7 @@ If you vibe with this project, please **⭐ star the repo**
 It took me *days of sleep deprivation + ramen* to make this work 🌀
 
 <p align="center">
-  <img src="https://media.giphy.com/media/njYrp176NQsHS/giphy.gif" width="200" alt="Naruto thumbs up">
+  <img src="https://media.giphy.com/media/ASd0Ukj0y3qMM/giphy.gif" width="200" alt="Naruto thumbs up">
 </p>
 
 ---
