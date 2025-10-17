@@ -3,7 +3,7 @@
 
 <p align="center">
   <img src="https://i.giphy.com/y5efFpqW5knlu.webp" width="250" alt="Naruto running">
-  <img src="https://media.giphy.com/media/mCRJDo24UvJMA/giphy.gif" width="200" alt="Hello Kitty coding">
+  <img src="https://i.giphy.com/kZqbBT64ECtjy.webp" width="200" alt="Hello Kitty coding">
 </p>
 
 ---
