@@ -10,7 +10,7 @@
 
 ### 🧠 What’s This?
 A **supercharged Telegram bot** that lets you encode videos using **your own FFMPEG commands** 🎞️  
-Even if your server restarts, it **keeps encoding like Naruto never giving up on Sasuke** 💪  
+Even if your server restarts, it **keeps encoding** 💪  
 All thanks to a persistent database that remembers your queue!
 
 ---
@@ -26,9 +26,9 @@ All thanks to a persistent database that remembers your queue!
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/26gssIytJvy1b1THO/giphy.gif" width="250" alt="Naruto believe it">
+  <img src="https://i.giphy.com/rw3oHXGVUuUE0.webp" width="250" alt="Urahra">
   <br>
-  <b>"Believe it!" – Naruto, probably after a successful encode</b>
+  <b>Smart Like Urahara Kisuke</b>
 </p>
 
 ---
@@ -91,7 +91,7 @@ python3 -m bot
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/YQitE4YNQNahy/giphy.gif" width="220" alt="Hello Kitty laptop">
+  <img src="https://i.giphy.com/L1FJH5qxESFwpuTgIB.webp" width="220" alt="Hello Kitty laptop">
   <br>
   <b>Even Hello Kitty is debugging your FFMPEG args 💅</b>
 </p>
@@ -109,19 +109,13 @@ python3 -m bot
 
 ## 💖 Support the Project
 If this bot saved your encoding sanity, please **⭐ star the repo**  
-Made with sleepless nights, ramen 🍜, and a little ninja willpower 🍃
+Made with sleepless nights, coffee , and a little willpower 🍃
 
 <p align="center">
-  <img src="https://media.giphy.com/media/J93sVmfYBtsRi/giphy.gif" width="200" alt="Naruto thumbs up">
+  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHdmdWlyc2o0aXVnM2M3NHBpbHBuYWNodzltbXQ5ZzlhOG93c290aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iJ7GTWl4VusjMGeqOV/giphy.gif" width="200" alt="hare krishna">
   <br>
-  <b>Thanks for supporting, dattebayo! 🍥</b>
+  <b>Thanks for supporting, हरे कृष्ण</b>
 </p>
 
----
 
-## 📸 Demo
-_Add your bot screenshots, Telegram logs, or encode previews here._
-
----
-
-### Made with ❤️, 🦾, and way too much caffeine by [YourNameHere]
+### Made with ❤️, 🦾, and way too much caffeine by [Nirusaki]
