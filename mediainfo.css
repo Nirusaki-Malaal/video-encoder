@@ -1,0 +1,130 @@
+/* BLEACH THEME: SHINIGAMI ARCHIVE RECORD */
+  
+  /* Import a sharp, condensed font reminiscent of the title cards */
+  @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;600&family=Rajdhani:wght@500;700&display=swap');
+
+  body {
+    background-color: #080808;
+    color: #e0e0e0;
+    font-family: 'Rajdhani', sans-serif; /* Tech/Anime feel */
+    margin: 0;
+    padding: 40px;
+    /* Subtle Manga screentone pattern */
+    background-image: 
+        radial-gradient(#222 15%, transparent 16%),
+        radial-gradient(#222 15%, transparent 16%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    
+    /* FIX: Ensures background stays locked and covers full screen even with 7+ sections */
+    background-attachment: fixed;
+    min-height: 100vh; 
+  }
+
+  /* AGGRESSIVE OVERRIDE of the inline "Navy" border */
+  table {
+    border: 0px none !important; /* Remove the old border */
+    border-left: 8px solid #ffffff !important; /* Thick Soul Reaper white spine */
+    background-color: #000000;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 50px;
+    /* Hard shadow, Ichigo Orange */
+    box-shadow: 12px 12px 0px #FF6D00; 
+    position: relative;
+    page-break-inside: avoid; /* Print optimization for long reports */
+  }
+
+  /* Header Styling - The "Bankai" Look */
+  /* This targets ALL h2s (General, Video, Audio, Text, Menu, etc.) equally */
+  h2 {
+    font-family: 'Teko', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    margin: 0;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    /* Diagonal cut on the header background */
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+    width: fit-content;
+    min-width: 300px;
+  }
+
+  /* Table Rows */
+  tr {
+    transition: transform 0.1s ease, background 0.2s;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  
+  /* Adds a subtle divider line since we removed borders */
+  td {
+    border-bottom: 1px solid #222;
+    padding: 12px 15px;
+  }
+
+  /* Hover Effect - Spiritual Pressure Spike */
+  tr:hover {
+    background-color: #0f0f0f;
+    transform: translateX(10px); /* Slide out slightly like a sword draw */
+    border-left: 2px solid #FF6D00;
+  }
+
+  /* The Labels (Italics override) */
+  td i {
+    font-style: normal;
+    font-family: 'Teko', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #666;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+
+  /* When hovering a row, turn the label orange */
+  tr:hover td i {
+    color: #FF6D00;
+    text-shadow: 0 0 8px rgba(255, 109, 0, 0.4);
+  }
+
+  /* The Values */
+  td[colspan="3"] {
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  /* First Column adjustments */
+  /* This specifically targets the Header Cell in MediaInfo exports */
+  td[width="150"] {
+    width: 200px; /* Give it a bit more breathing room */
+    border-right: 1px solid #333;
+    background: linear-gradient(90deg, #000 0%, #050505 100%);
+  }
+
+  /* Selection Highlighting */
+  ::selection {
+    background: #FF6D00;
+    color: #000;
+  }
+
+  /* Scrollbar - Custom Webkit */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333; 
+    border: 1px solid #000;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FF6D00; 
+  }
