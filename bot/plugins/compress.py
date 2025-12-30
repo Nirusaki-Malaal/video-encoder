@@ -54,8 +54,8 @@ async def renew(e):
     list_handler.clear()
     data.clear()
     queue.delete_many({})
-    os.system("rm downloads/*")
-    os.system("rm encodes/*")
+    os.system(f"rm -rf {Config.ROOT_DIRECTORY}/downloads/*")
+    os.system(f"rm -rf {Config.ROOT_DIRECTORY}/encodes/*")
     for proc in psutil.process_iter():
         processName = proc.name()
         processID = proc.pid
@@ -90,13 +90,13 @@ def hbs(size):
 async def stats(bot: Client, event: CallbackQuery):
  try:  
   if "stats" == event.data:
-   data = os.listdir("encodes/")
-   down = os.listdir("downloads/")
-   i_file = f'downloads/{down[0]}'
-   file = f'encodes/{data[0]}'
+   data = os.listdir(f"{Config.ROOT_DIRECTORY}/encodes/")
+   down = os.listdir(f"{Config.ROOT_DIRECTORY}/downloads/")
+   i_file = f'{Config.ROOT_DIRECTORY}/downloads/{down[0]}'
+   file = f'{Config.ROOT_DIRECTORY}/encodes/{data[0]}'
    op = hbs(int(Path(i_file).stat().st_size))
    ot = hbs(int(Path(file).stat().st_size))
-   ans = f"Ꮻriginᴀl : {down[0]}\n\nᎰilᴇ Ꮪizᴇ : {op} \n\nᎬnᴄᴏdᴇd : {data[0]}\n\nᎰilᴇ Ꮪizᴇ: {ot}"
+   ans = f"Original : {down[0]}\n\nFile Size : {op} \n\nEncoded : {data[0]}\n\nFile Size: {ot}"
    await event.answer(ans, show_alert=True)
   elif "cancel" == event.data:
    for proc in psutil.process_iter():
@@ -106,7 +106,7 @@ async def stats(bot: Client, event: CallbackQuery):
      os.kill(processID, signal.SIGKILL)
    await event.answer("Process Killed", show_alert=True) 
  except Exception as e:
-   await event.answer("Ꮪᴏʍᴇᴛing Ꮃᴇnᴛ Ꮃrᴏng 🤔\nᏒᴇsᴇnd Ꮇᴇdiᴀ", show_alert=True)
+   await event.answer("Something Went Wrong 🤔Resend Media", show_alert=True)
    LOGS.info(e)
 
 async def encode_it(input_file, output, message, obj, total_time): #duration
@@ -121,12 +121,12 @@ async def encode_it(input_file, output, message, obj, total_time): #duration
    while process.returncode != 0:
     try:
      await asyncio.sleep(3)
-     with open("/bot/progress.txt", 'r+') as file:
+     with open(f"{Config.ROOT_DIRECTORY}/progress.txt", 'r+') as file:
         text = file.read()
-        frame = re.findall("frame=(\d+)", text)
-        time_in_us=re.findall("out_time_ms=(\d+)", text)
-        progress=re.findall("progress=(\w+)", text)
-        speed=re.findall("speed=(\d+\.?\d*)", text)
+        frame = re.findall(r"frame=(\d+)", text)
+        time_in_us=re.findall(r"out_time_ms=(\d+)", text)
+        progress=re.findall(r"progress=(\w+)", text)
+        speed=re.findall(r"speed=(\d+\.?\d*)", text)
         if len(frame):
           frame = int(frame[-1])
         else:
@@ -143,8 +143,8 @@ async def encode_it(input_file, output, message, obj, total_time): #duration
           if progress[-1] == "end":
             break
         execution_time = TimeFormatter((time.time() - COMPRESSION_START_TIME)*1000)
-        dpcd = os.listdir("encodes/")
-        fis = f'encodes/{dpcd[0]}'
+        dpcd = os.listdir(f"{Config.ROOT_DIRECTORY}/encodes/")
+        fis = f'{Config.ROOT_DIRECTORY}/encodes/{dpcd[0]}'
         ottt = hbs(int(Path(fis).stat().st_size))
         elapsed_time = int(time_in_us)/1000000
         difference = math.floor((total_time - elapsed_time) / float(speed))
@@ -154,10 +154,10 @@ async def encode_it(input_file, output, message, obj, total_time): #duration
         percentage = math.floor(elapsed_time * 100 / total_time)
         perc_str = '{0}%'.format(round(percentage, 2))
         prog_bar_str = '{0}{1}'.format(''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 10))]), ''.join([UN_FINISHED_PROGRESS_STR for i in range(10 - math.floor(percentage / 10))]))
-        stats = f'➤ **Ꭼnᴄᴏding** 🎖\n' \
-                f'➤ **Ꭲiʍᴇ Ꮮᴇfᴛ** ⏳ : {ETA}\n' \
-                f'➤ **Ꮯurrᴇnᴛ Ꮪizᴇ** 🖥 : {ottt}\n' \
-                f'➤ **Ꮲᴇrᴄᴇnᴛᴀgᴇ** 🗝 : {perc_str}\n' \
+        stats = f'➤ **Encoding** 🎖\n' \
+                f'➤ **Time Left** ⏳ : {ETA}\n' \
+                f'➤ **Current Size** 🖥 : {ottt}\n' \
+                f'➤ **Percentage** 🗝 : {perc_str}\n' \
                 f'➤ {prog_bar_str}\n' \
                 f'➽───────────────❥'
         try:
@@ -173,6 +173,7 @@ async def encode_it(input_file, output, message, obj, total_time): #duration
           else:
             break
     except Exception as e:
+      LOGS.info(e)
       break
    stdout, stderr = await process.communicate()
    LOGS.info(stderr)
@@ -233,23 +234,36 @@ async def mediainfo(app, message):
         progress=progress_for_pyrogram,
         progress_args=(
           app,
-          "➣ **Ꭰᴏwnlᴏᴀding Ꭲhᴇ Ꮩidᴇᴏ** 🚴‍♀️",
+          "➣ **Downloading The File** 🚴‍♀️",
           msg,
           d_start
         )
       )
-   await msg.edit("↣ 🪦 **Ꮐᴇᴛᴛing Ꮇᴇdiᴀinfᴏ**")
-   mediainfo = await functions.mediainfo(filepath)
-   await msg.edit(f"[Mediainfo]({mediainfo})")
-   os.remove(filepath)
+   await msg.edit("↣ 🪦 **Getting Mediainfo**")
+   file_path = await functions.mediainfo(filepath)
+   if file_path!="404":
+     await msg.delete()
+     await bot.send_document(
+        chat_id=message.from_user.id,
+        document=file_path,
+        reply_to_message_id=video,
+        caption="📄 MediaInfo Report (HTML)"
+       )
+     os.remove(filepath)
+     os.remove(file_path)
+   else:
+     await msg.edit("**ERROR**")
+     os.remove(filepath)
+    
+   
   else:
-   await app.send_message(message.chat.id, " ➽ **😐 Ꮢᴇᴩly Ꭲᴏ Ꭺ Ꮀilᴇ**")
+   await app.send_message(message.chat.id, " ➽ **😐 Reply To a File**")
 
 async def encode(dic):
  try:   
   from_user_id = int(dic['from_user']['id'])
   reply_video_id = int(dic['id'])
-  dfix = "➣ **Ꭰᴏwnlᴏᴀding Ꭲhᴇ Ꮩidᴇᴏ** 🚴‍♀️"  
+  dfix = "➣ **Downloading The Video** 🚴‍♀️"  
   reply = await bot.send_message(text=dfix, chat_id=from_user_id, reply_to_message_id=reply_video_id)
   media_type = str(dic['media'])
   if media_type == "MessageMediaType.VIDEO":
@@ -273,9 +287,10 @@ async def encode(dic):
   joined = await parser(filename)
   with_ext = joined + '.mkv'
   duration = await ffmpeg.duration(filepath=down)
-  output_name = 'encodes/' + joined + '.mkv'  
+  output_name = f'{Config.ROOT_DIRECTORY}/encodes/' + joined + '.mkv'
+  LOGS.info(output_name)  
   await encode_it(down, output_name, reply, from_user_id, duration)
-  await reply.edit("➣ **Ꮜᴩlᴏᴀding Ꭲhᴇ Ꮩidᴇᴏ** 🚴‍♀️")
+  await reply.edit("➣ **Uploading The Video** 🚴‍♀️")
   await upload_handle1(bot, from_user_id, output_name, with_ext, joined, reply, reply_video_id)
   await reply.delete(True)
   os.remove(down)

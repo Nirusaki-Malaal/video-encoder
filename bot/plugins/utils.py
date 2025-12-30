@@ -1,5 +1,5 @@
 import os
-from bot import data, LOGS, list_handler, queue
+from bot import data, LOGS, list_handler, queue, Config
 from bot.plugins.compress import encode
 from pyrogram.types import Message
 
@@ -16,7 +16,7 @@ async def on_task_complete():
     del list_handler[0]
     if len(data) > 0:
       try: 
-        os.system('rm encodes/*')
+        os.system(f'rm {Config.ROOT_DIRECTORY}/encodes/*')
       except Exception as e:
         pass
       await add_task1(data[0])

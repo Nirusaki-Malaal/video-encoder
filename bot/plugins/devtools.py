@@ -24,14 +24,14 @@ async def exec_message_f(client, message):
         stdout, stderr = await process.communicate()
         e = stderr.decode()
         if not e:
-            e = "Nᴏ Ꭼrrᴏr"
+            e = "No Error"
         o = stdout.decode() ##g
         if not o:
-            o = "Nᴏ Ꮻuᴛᴩuᴛ"
+            o = "No Output"
         else:
             _o = o.split("\n")
             o = "`\n`".join(_o)
-        OUTPUT = f"**ᎧᏌᎬᏒᎩ:**\n__Ꮯᴏʍʍᴀnd:__\n`{cmd}` \n__ᏢᏆᎠ:__\n`{process.pid}`\n\n**ᏚᎢᎠᎬᏒᏒ:** \n`{e}`\n**Ꮻuᴛᴩuᴛ:**\n{o}"
+        OUTPUT = f"**Query:**\n__Command:__\n`{cmd}` \n__PID:__\n`{process.pid}`\n\n**STDERR:** \n`{e}`\n**OUTPUT:**\n{o}"
 
         if len(OUTPUT) > MAX_MESSAGE_LENGTH:
             with open("exec.text", "w+", encoding="utf8") as out_file:
@@ -59,7 +59,7 @@ async def aexec(code, client, message):
 
 async def eval_message_f(client, message):
     if message.from_user.id in Config.AUTH_USERS:
-        status_message = await message.reply_text("Ꮲrᴏᴄᴇssing...")
+        status_message = await message.reply_text("Processing...")
         cmd = message.text.split(" ", maxsplit=1)[1]
 
         reply_to_id = message.id
@@ -90,10 +90,10 @@ async def eval_message_f(client, message):
         elif stdout:
             evaluation = stdout
         else:
-            evaluation = "Ꮪuᴄᴇss"
+            evaluation = "SUCESS"
 
         final_output = (
-            "**ᎬᏙᎪᏞ**: <code>{}</code>\n\n**ᏫᏌᎢᏢᏌᎢ**:\n<code>{}</code> \n".format(
+            "**EVAL**: <code>{}</code>\n\n**OUTPUT**:\n<code>{}</code> \n".format(
                 cmd, evaluation.strip()
             )
         )
@@ -129,7 +129,7 @@ async def progress_for_pyrogram(current, total, bot, ud_type, message, start):
         done_mb = '{0}'.format(humanbytes(current))
         total_mb = '{0}'.format(humanbytes(total))
         spid = '{0}'.format(humanbytes(speed))
-        messg = f"{ud_type}\n➣ **Ꮲᴇrᴄᴇnᴛ** 🗿 : {perc_b} \n➣ **Ꭲᴏᴛᴀl Ꮪizᴇ** 🎯 : {total_mb}\n➣ **Ꮯᴏʍᴩlᴇᴛᴇd** 🏗 : {done_mb}\n➣ **Ꭲiʍᴇ Ꮮᴇfᴛ** ⌛️ : {estimated_total_time if estimated_total_time != '' else '0 s'}\n➣ **Ꮪᴩᴇᴇd** 🚀 : {spid}\n➢ {pro_bar}"
+        messg = f"{ud_type}\n➣ **Percent** 🗿 : {perc_b} \n➣ **Total Size** 🎯 : {total_mb}\n➣ **Completed** 🏗 : {done_mb}\n➣ **Time Left** ⌛️ : {estimated_total_time if estimated_total_time != '' else '0 s'}\n➣ **Speed** 🚀 : {spid}\n➢ {pro_bar}"
         try:
          if not message.photo:
           await message.edit_text(text=messg)
@@ -181,7 +181,7 @@ async def progress_for_pyrogram1(current, total, bot, ud_type, message, start, s
         done_mb = '{0}'.format(humanbytes(current))
         total_mb = '{0}'.format(humanbytes(total))
         spid = '{0}'.format(humanbytes(speed))
-        messg = f"{ud_type}\n➣ **Ꮲᴇrᴄᴇnᴛ** 🗿 : {perc_b} \n➣ **Ꭲᴏᴛᴀl Ꮪizᴇ** 🎯 : {total_mb}\n➣ **Ꮯᴏʍᴩlᴇᴛᴇd** 🏗 : {done_mb}\n➣ **Ꭲiʍᴇ Ꮮᴇfᴛ** ⌛️ : {estimated_total_time if estimated_total_time != '' else '0 s'}\n➣ **Ꮪᴩᴇᴇd** 🚀 : {spid}\n➢ {pro_bar}"
+        messg = f"{ud_type}\n➣ **Percent** 🗿 : {perc_b} \n➣ **Total Size** 🎯 : {total_mb}\n➣ **Completed** 🏗 : {done_mb}\n➣ **Time Left** ⌛️ : {estimated_total_time if estimated_total_time != '' else '0 s'}\n➣ **Speed** 🚀 : {spid}\n➢ {pro_bar}"
         try:
          if not message.photo:
           await message.edit_text(text=messg)

@@ -11,13 +11,13 @@ from bot.plugins.utils import add_task1, on_task_complete
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from .plugins.devtools import exec_message_f, eval_message_f
 from .plugins.extras import changeffmpeg , get_ffmpeg, upload_dir, download_dir, get_type, changemode, sample, vshots
-
+import os
 START_TIME = datetime.now()
 
 @bot.on_message(filters.incoming & filters.command(["uptime"]))
 async def help_message(bot, message):
    if message.from_user.id in Config.AUTH_USERS:
-    await bot.send_message(chat_id=message.from_user.id,text=f"**Uᴩᴛiʍᴇ: {str(datetime.now() - START_TIME).split('.')[0]}**")
+    await bot.send_message(chat_id=message.from_user.id,text=f"**Uptime: {str(datetime.now() - START_TIME).split('.')[0]}**")
     return
    else:
     return await message.reply_sticker("CAACAgUAAxkBAAIah2LNhR_vCtyL-YCw8Sf3cO0BCFnqAAKDBgACmStpV778w4PJK2OkHgQ")
@@ -27,14 +27,14 @@ async def help_message(bot, message):
   if message.chat.id not in Config.AUTH_USERS:
     return
   await adduser(message)
-  txt = "**▻ A Siʍᴩlᴇ DB Quᴇuᴇ Vidᴇᴏ Enᴄᴏdᴇr Bᴏᴛ\n▻ Crᴇᴀᴛᴇd By Nirusᴀᴋi (Pᴏwᴇrᴇd By R136ᴀ1)\n► Cᴀn Cᴏʍᴩrᴇss, Gᴇnᴇrᴀᴛᴇ Sᴀʍᴩlᴇ, Sᴄrᴇᴇnshᴏᴛs, Eᴛᴄ.\n► This Bᴏᴛ Is Privᴀᴛᴇ**"
+  txt = "**▻ A Simple DB Queue Video Encoder Bot\n▻ Created By Nirusaki\n► Can Encode, Generate Sample, Screenshots, Etc.\n► This Bot is Private**"
   await bot.send_message(
         chat_id=message.chat.id,
         text=txt,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('Jᴏin Fiᴇrᴄᴇnᴇᴛwᴏrᴋ', url='https://t.me/Fiercenetwork')
+                    InlineKeyboardButton('Join Fiercenetwork', url='https://t.me/Fiercenetwork')
                 ]
             ]
         ),
@@ -45,10 +45,10 @@ async def help_message(bot, message):
 async def help_message(bot, message):
   if message.chat.id not in Config.AUTH_USERS:
    return
-  query = await message.reply_text("𐌀ძძᤉძ Ⴕჿ Ⴓսᤉսᤉ", quote=True)
+  query = await message.reply_text("Added To Queue", quote=True)
   queue.insert_one({'message' : str(message)})
-  await napana()
-  if len(data) == 1:
+  await napana() # queue length
+  if len(data) == 1: #agar queue length 1 hai to  data is your local queue list having 
    await query.delete()
    await add_task1(data[0])
   
@@ -92,11 +92,14 @@ async def help_message(bot, message):
 async def help_message(bot, message):
  if message.chat.id not in Config.AUTH_USERS:
     return await message.reply_text("You Are Not Authorised To Use This Bot 🗑")
- query = await message.reply_text("𐌀ძძᤉძ Ⴕჿ Ⴓսᤉսᤉ", quote=True)
- data.append(message.reply_to_message)
- if len(data) == 1:
-    await query.delete()   
-    await add_task(message.reply_to_message)    
+ query = await message.reply_text("Added To Queue", quote=True)
+ queue.insert_one({'message' : str(message.reply_to_message)})
+ await napana() # queue length
+ if len(data) == 1: #agar queue length 1 hai to  data is your local queue list having 
+   await query.delete()
+   await add_task1(data[0])
+
+     
     
 @bot.on_message(filters.incoming & filters.command(["setcode"]))
 async def help_message(bot, message):
@@ -202,7 +205,7 @@ async def startup():
     LOGS.info(f'[Started]: @{(await bot.get_me()).username}')
     x = len(Config.AUTH_USERS)
     for i in range(0, x):
-      await bot.send_message(chat_id=Config.AUTH_USERS[i], text="**Ᏼᴏᴛ Ꮋᴀs Ꮢᴇsᴛᴀrᴛᴇd**")
+      await bot.send_message(chat_id=Config.AUTH_USERS[i], text="**Bot Has Restarted**")
     LOGS.info("STARTING CHECKUP")
     await checkup()
     await idle()

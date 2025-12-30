@@ -18,12 +18,14 @@ class Config(object):
   BOT_TOKEN = str(os.environ.get("BOT_TOKEN"))
   API_ID = int(os.environ.get("API_ID"))
   API_HASH = str(os.environ.get("API_HASH"))
-  DOWNLOAD_DIR = str(os.environ.get("DOWNLOAD_DIR"))
+  
   AUTH_USERS = list(set(int(x) for x in os.environ.get("AUTH_USERS").split()))
   LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
   DATABASE_URL = str(os.environ.get("DATABASE_URL"))
   UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL")
   TEMP = 'temp/'
+  ROOT_DIRECTORY = os.getcwd()
+  DOWNLOAD_DIR = f"{ROOT_DIRECTORY}/downloads/"
   USERNAME = str(os.environ.get("BOT_USERNAME"))
 
 LOG_FILE_NAME = "Encoder@Log.txt"

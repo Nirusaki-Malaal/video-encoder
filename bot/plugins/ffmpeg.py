@@ -1,11 +1,10 @@
-import pyrogram, asyncio, subprocess, time, os, re, math
+import pyrogram, asyncio, subprocess, time, os, re, math, requests
 from random import randint
 from subprocess import Popen
 from bot import Config, bot, LOGS
 from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
 from html_telegraph_poster import TelegraphPoster
-
 class ffmpeg(object):
  async def duration(filepath): ##THANKS ABIR FOR A HACHOIR FREE DURATION CODE
   try:
@@ -21,8 +20,8 @@ class ffmpeg(object):
    )
    stdout, stderr = process.communicate()
    output = stdout.decode().strip()
-   duration = re.search("Duration:\s*(\d*):(\d*):(\d+\.?\d*)[\s\w*$]",output)
-   bitrates = re.search("bitrate:\s*(\d+)[\s\w*$]",output)
+   duration = re.search(r"Duration:\s*(\d*):(\d*):(\d+\.?\d*)[\s\w*$]",output)
+   bitrates = re.search(r"bitrate:\s*(\d+)[\s\w*$]",output)
    if duration is not None:
      hours = int(duration.group(1))
      minutes = int(duration.group(2))
@@ -86,19 +85,26 @@ class functions(object):
         stderr=subprocess.STDOUT,
      )
      stdout, stderr = process.communicate()
-     out = stdout.decode()
-     abc = await bot.get_me()
-     name = abc.first_name
-     username = abc.username
-     client = TelegraphPoster(use_api=True)
-     client.create_api_token("Mediainfo")
-     page = client.post(
-        title="Mediainfo",
-        author=name,
-        author_url=f"https://t.me/{username}",
-        text=out,
-     )
-     return page["url"]
+
+     raw_html = stdout.decode()
+     file1 = open("mediainfo.html", "w")
+     file1.write(raw_html)
+     file1.close()
+     cmd = r"""sed -i '4i\<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Nirusaki-Malaal/video-encoder@main/mediainfo.css">' mediainfo.html"""
+     os.system(cmd)
+     return "mediainfo.html"
+     #abc = await bot.get_me()
+     #name = abc.first_name
+     #username = abc.username
+     #client = TelegraphPoster(use_api=True)
+     #client.create_api_token("Mediainfo")
+     #page = client.post(
+      #  title="Mediainfo",
+       # author=name,
+       # author_url=f"https://t.me/{username}",
+       # text=out,
+     #)
+      
     except Exception as e:
      LOGS.info(e) 
      return "404"   
