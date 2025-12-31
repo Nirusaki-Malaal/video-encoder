@@ -117,6 +117,81 @@ Made with sleepless nights, coffee , and a little willpower 🍃
   <b>Thanks for supporting, हरे कृष्ण</b>
 </p>
 
+# 🐳 Docker Guide — For LibFDK_AAC
+
+---
+
+
+## 1️⃣ Install Docker
+
+### Ubuntu / Debian
+```bash
+sudo apt update
+sudo apt install docker.io -y
+```
+
+Start Docker:
+```bash
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+Verify:
+```bash
+docker --version
+```
+
+### (Optional) Run without sudo
+```bash
+sudo usermod -aG docker $USER
+```
+
+Logout & login again.
+
+---
+
+## 2️⃣ Project Structure
+
+```
+video-encoder/
+├── Dockerfile
+├── bot/
+└── start.sh
+....
+```
+---
+
+## 3️⃣ Build Image
+
+```bash
+docker build -t myapp .
+```
+
+---
+
+## 4️⃣ Run Container
+
+```bash
+docker run myapp
+```
+
+
+
+## 🧹 Cleanup (optional)
+
+```bash
+docker system prune -a
+```
+
+---
+
+## ✅ Summary
+
+- `Dockerfile` → instructions  
+- `docker build` → create image  
+- `docker run` → run app  
+
+
 
 ### Made with ❤️, 🦾, and way too much caffeine by [Nirusaki]
 I have fixed Everything one in for all
