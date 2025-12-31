@@ -191,7 +191,7 @@ docker system prune -a
 - `docker build` → create image  
 - `docker run` → run app  
 
-
+if you want to run it without dockerfile then install install.sh then requirements.txt and then use start.sh
 
 ### Made with ❤️, 🦾, and way too much caffeine by [Nirusaki]
 I have fixed Everything one in for all
