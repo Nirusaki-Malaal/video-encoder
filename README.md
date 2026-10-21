@@ -1,197 +1,56 @@
-<h1 align="center">🍥 Video Encoder Bot</h1>
-<h3 align="center">⚡ The Ultimate FFMPEG-Powered Telegram Bot — Encodes Like a Hokage ⚙️</h3>
-
 <p align="center">
-  <img src="https://i.giphy.com/y5efFpqW5knlu.webp" width="250" alt="Naruto running">
-  <img src="https://i.giphy.com/kZqbBT64ECtjy.webp" width="200" alt="Hello Kitty coding">
+  <img src="assets/logo.svg" alt="video-encoder logo" width="540">
 </p>
 
----
+# video-encoder
 
-### 🧠 What’s This?
-A **supercharged Telegram bot** that lets you encode videos using **your own FFMPEG commands** 🎞️  
-Even if your server restarts, it **keeps encoding** 💪  
-All thanks to a persistent database that remembers your queue!
+Queue-based video encoding daemon with persistent MongoDB state, custom FFMPEG parameter pipelines, and Telegram bot control.
 
----
+## Architecture
 
-## 💪 Features
-- 🍥 Encode videos with **your own FFMPEG settings**
-- 🌀 **Persistent queue** — keeps working through restarts
-- 💻 **Admin tools:** bash, eval, sysinfo, mediainfo
-- 🐳 Deploy easily using **Docker** or manual setup
-- 🧾 Fully configurable via `config.env`
-- 💾 Reliable database = zero progress loss
+* **Worker Daemon**: Asynchronous task runner consuming encoding jobs sequentially.
+* **Persistent Queue**: MongoDB storage maintaining job states, input parameters, and file references across process restarts.
+* **Media Engine**: Native FFMPEG runtime with custom libfdk_aac compilation and multi-track audio/subtitle preservation.
+* **Control Plane**: Telegram Bot API client for remote job dispatch, progress telemetry, and shell administration.
 
----
+## Prerequisites
 
-<p align="center">
-  <img src="https://i.giphy.com/rw3oHXGVUuUE0.webp" width="250" alt="Urahra">
-  <br>
-  <b>Smart Like Urahara Kisuke</b>
-</p>
+* Docker and Docker Compose (recommended) or a Linux environment with:
+  * Python 3.10+
+  * FFMPEG (built with libfdk_aac)
+  * MongoDB 5.0+
 
----
+## Configuration
 
-## 💬 Commands
+Set environment variables in `config.env` or pass them via container runtime:
 
-| Command | Description |
-|----------|-------------|
-| `/start` | Start the bot |
-| `/encode` | Manually add a video to the queue |
-| `/simp` | Get a sample encode |
-| `/getcode` | Show current FFMPEG command |
-| `/setcode` | Set your FFMPEG code |
-| `/renew` | Renew bot session |
-| `/clear` | Clear encoding queue |
-| `/setul` | Change upload mode (`document` / `video`) |
-| `/ulmode` | Get current upload mode |
-| `/ul` | Upload manually |
-| `/dl` | Download manually |
-| `/bash` | Run Linux commands (admin only) |
-| `/eval` | Execute Python code |
-| `/vshot <num>` | Take a video screenshot |
-| `/info` | Get video metadata |
-| `/sysinfo` | Show system info |
-| `/uptime` | Display uptime |
+| Variable | Description |
+| :--- | :--- |
+| `API_ID` | Telegram API ID from my.telegram.org |
+| `API_HASH` | Telegram API Hash from my.telegram.org |
+| `BOT_TOKEN` | Bot token from @BotFather |
+| `OWNER_ID` | Telegram user ID of authorized administrator |
+| `DATABASE_URL` | MongoDB connection URI |
+| `DOWNLOAD_DIR` | Working scratch directory for downloads |
 
----
+## Deployment
 
-## 🧰 Deployment Guide
+### Docker (Recommended)
 
-### 🧾 1. Fill in `config.env`
-Add your credentials like this:
-
-```env
-BOT_TOKEN=your_bot_token_here
-OWNER_ID=123456789
-DATABASE_URL=your_database_url
-FFMPEG_CODE=-preset veryfast -crf 23 -c:v libx264 -c:a aac
+```bash
+docker build -t video-encoder .
+docker run -d --env-file config.env video-encoder
 ```
 
----
+### Manual Host Execution
 
-### 🐳 2. Deploy with Docker
 ```bash
-docker build -t video-encoder-bot .
-docker run -d video-encoder-bot
-```
-
----
-
-### 💻 3. Or Run Manually
-```bash
+chmod +x install.sh start.sh
+./install.sh
 pip install -r requirements.txt
-python3 -m bot
+./start.sh
 ```
 
-> ⚠️ **Note:** Start the bot before encoding or you'll face:  
-> `"Client Has Not Met Error"` 😭
+## License
 
----
-
-<p align="center">
-  <img src="https://i.giphy.com/L1FJH5qxESFwpuTgIB.webp" width="220" alt="Hello Kitty laptop">
-  <br>
-  <b>Even Hello Kitty is debugging your FFMPEG args 💅</b>
-</p>
-
----
-
-## 🛠️ Tech Stack
-- 🐍 **Python 3**
-- 🎞️ **FFMPEG**
-- 💾 **Database** (persistent queue)
-- 🤖 **Telegram Bot API**
-- 🐳 **Docker** (for deployment)
-
----
-
-## 💖 Support the Project
-If this bot saved your encoding sanity, please **⭐ star the repo**  
-Made with sleepless nights, coffee , and a little willpower 🍃
-
-<p align="center">
-  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHdmdWlyc2o0aXVnM2M3NHBpbHBuYWNodzltbXQ5ZzlhOG93c290aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iJ7GTWl4VusjMGeqOV/giphy.gif" width="200" alt="hare krishna">
-  <br>
-  <b>Thanks for supporting, हरे कृष्ण</b>
-</p>
-
-# 🐳 Docker Guide — For LibFDK_AAC
-
----
-
-
-## 1️⃣ Install Docker
-
-### Ubuntu / Debian
-```bash
-sudo apt update
-sudo apt install docker.io -y
-```
-
-Start Docker:
-```bash
-sudo systemctl start docker
-sudo systemctl enable docker
-```
-
-Verify:
-```bash
-docker --version
-```
-
-### (Optional) Run without sudo
-```bash
-sudo usermod -aG docker $USER
-```
-
-Logout & login again.
-
----
-
-## 2️⃣ Project Structure
-
-```
-video-encoder/
-├── Dockerfile
-├── bot/
-└── start.sh
-....
-```
----
-
-## 3️⃣ Build Image
-
-```bash
-docker build -t myapp .
-```
-
----
-
-## 4️⃣ Run Container
-
-```bash
-docker run myapp
-```
-
-
-
-## 🧹 Cleanup (optional)
-
-```bash
-docker system prune -a
-```
-
----
-
-## ✅ Summary
-
-- `Dockerfile` → instructions  
-- `docker build` → create image  
-- `docker run` → run app  
-
-if you want to run it without dockerfile then install install.sh then requirements.txt and then use start.sh
-
-### Made with ❤️, 🦾, and way too much caffeine by [Nirusaki]
-I have fixed Everything one in for all
+GPL-3.0-or-later. See LICENSE for details.
